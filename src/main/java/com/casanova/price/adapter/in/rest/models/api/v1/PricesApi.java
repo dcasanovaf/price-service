@@ -1,4 +1,4 @@
-package com.casanova.price.adapter.in.rest.models.api;
+package com.casanova.price.adapter.in.rest.models.api.v1;
 
 
 import com.casanova.price.adapter.in.rest.models.dto.Price400Response;
@@ -55,7 +55,7 @@ public interface PricesApi {
     )
     @RequestMapping(
         method = RequestMethod.GET,
-        value = "/prices",
+        value = "/v1/prices",
         produces = { "application/json" }
     )
     ResponseEntity<PriceResponse> price(

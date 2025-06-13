@@ -24,7 +24,7 @@ class PricesIntegrationTest {
      */
     @Test
     void shouldReturnPriceForProduct35455AndBrand1At10AM() {
-        String url = "/prices?productId=35455&brandId=1&date=2020-06-14T10:00:00";
+        String url = "/v1/prices?productId=35455&brandId=1&date=2020-06-14T10:00:00";
         ResponseEntity<PriceResponse> response = restTemplate.getForEntity(url, PriceResponse.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -41,7 +41,7 @@ class PricesIntegrationTest {
      */
     @Test
     void shouldReturnPriceForProduct35455AndBrand1At16PM() {
-        String url = "/prices?productId=35455&brandId=1&date=2020-06-14T16:00:00";
+        String url = "/v1/prices?productId=35455&brandId=1&date=2020-06-14T16:00:00";
         ResponseEntity<PriceResponse> response = restTemplate.getForEntity(url, PriceResponse.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -57,7 +57,7 @@ class PricesIntegrationTest {
      */
     @Test
     void shouldReturnPriceForProduct35455AndBrand1At21PM() {
-        String url = "/prices?productId=35455&brandId=1&date=2020-06-14T21:00:00";
+        String url = "/v1/prices?productId=35455&brandId=1&date=2020-06-14T21:00:00";
         ResponseEntity<PriceResponse> response = restTemplate.getForEntity(url, PriceResponse.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -73,7 +73,7 @@ class PricesIntegrationTest {
      */
     @Test
     void shouldReturnPriceForProduct35455AndBrand1At10AMOnJune15() {
-        String url = "/prices?productId=35455&brandId=1&date=2020-06-15T10:00:00";
+        String url = "/v1/prices?productId=35455&brandId=1&date=2020-06-15T10:00:00";
         ResponseEntity<PriceResponse> response = restTemplate.getForEntity(url, PriceResponse.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -89,7 +89,7 @@ class PricesIntegrationTest {
      */
     @Test
     void shouldReturnPriceForProduct35455AndBrand1At21PMOnJune16() {
-        String url = "/prices?productId=35455&brandId=1&date=2020-06-16T21:00:00";
+        String url = "/v1/prices?productId=35455&brandId=1&date=2020-06-16T21:00:00";
         ResponseEntity<PriceResponse> response = restTemplate.getForEntity(url, PriceResponse.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);

@@ -3,7 +3,7 @@ package com.casanova.price.adapter.in.rest.controller;
 
 import com.casanova.price.adapter.in.rest.mapper.in.PriceRequestMapper;
 import com.casanova.price.adapter.in.rest.mapper.out.PriceResponseMapper;
-import com.casanova.price.adapter.in.rest.models.api.PricesApi;
+import com.casanova.price.adapter.in.rest.models.api.v1.PricesApi;
 import com.casanova.price.adapter.in.rest.models.dto.PriceResponse;
 import com.casanova.price.application.port.in.PriceCommand;
 import com.casanova.price.application.port.in.PriceUseCase;

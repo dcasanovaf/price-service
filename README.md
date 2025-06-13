@@ -1,156 +1,149 @@
-# Servicio de Precios
+# Price Service
 
-Este proyecto es una API desarrollada en **Java** utilizando **Spring Boot** para gestionar precios de productos según reglas de negocio específicas.
+Servicio REST para consultar el precio aplicable de un producto en una fecha dada, basado en reglas de prioridad y fechas de validez.
 
-## Tecnologías
+---
 
-- **Java**: Lenguaje principal.
-- **Spring Boot**: Framework para desarrollo de aplicaciones.
-- **Maven**: Gestión de dependencias.
-- **SQL**: Consultas optimizadas para la base de datos.
+## Tecnologías utilizadas
 
-## Estructura del Proyecto
+- **Java 21**
+- **Spring Boot 3.3**
+- **Maven**
+- **Lombok**
+- **MapStruct**
+- **H2 Database** (modo test)
+- **Swagger OpenAPI 3**
+- **JUnit 5 / Mockito**
 
-- `src/main/java/com/casanova/price/adapter`: Adaptadores para entrada y salida (REST, persistencia).
-- `src/main/java/com/casanova/price/application`: Lógica de negocio y puertos.
-- `src/main/java/com/casanova/price/domain`: Entidades y reglas de negocio.
-- `src/test/java/com/casanova/price`: Pruebas unitarias.
+---
 
-## Endpoints
+## Arquitectura
 
-### Obtener precio
-**GET** `/prices`
+El proyecto sigue una arquitectura hexagonal dividida en tres capas principales:
+
+```
+└── domain              → Modelos y lógica de negocio pura
+└── application         → Casos de uso y puertos (in/out)
+└── adapter
+     ├── in             → Adaptadores de entrada (REST)
+     └── out            → Adaptadores de salida (JPA / persistencia)
+```
+
+Esta separación permite escalar, testear y mantener el código de forma independiente a frameworks.
+
+---
+
+## Ejecución del proyecto
+
+### Requisitos previos
+
+- JDK 21+
+- Maven 3.9+
+
+### Iniciar localmente
+
+```bash
+mvn spring-boot:run
+```
+
+El servicio quedará disponible en:
+
+```
+http://localhost:8080/v1/prices
+```
+
+---
+
+## Uso de la API
+
+### Endpoint: `GET /v1/prices`
+
+Consulta el precio aplicable para un producto en una fecha y marca determinada.
 
 #### Parámetros:
-- `productId` (Long): ID del producto.
-- `brandId` (Long): ID de la marca.
-- `date` (LocalDateTime): Fecha de consulta.
+
+| Nombre     | Tipo       | Obligatorio | Descripción                         |
+|------------|------------|-------------|-------------------------------------|
+| `productId`| Long       | Sí          | ID del producto                     |
+| `brandId`  | Long       | Sí          | ID de la marca                      |
+| `date`     | ISO 8601   | Sí          | Fecha completa con zona horaria     |
+
+#### Ejemplo:
+
+```http
+GET /v1/prices?productId=35455&brandId=1&date=2020-06-14T10:00:00Z
+```
 
 #### Respuesta:
+
 ```json
 {
-  "productId":35455,
-  "brandId":1,
-  "priceList":1.0,
-  "startDate":"2020-06-14T00:00:00",
-  "endDate":"2020-12-31T23:59:59",
-  "price":35.5
+  "brandId": 1,
+  "productId": 35455,
+  "priceListId": 1,
+  "startDateUtc": "2020-06-14T00:00:00Z",
+  "endDateUtc": "2020-12-31T23:59:59Z",
+  "amount": 35.50,
+  "currency": "EUR"
 }
 ```
 
-## Using the application locally
+---
 
-- **Swagger** 
-  <br/> [Enlace a Swagger](http://localhost:8080/swagger-ui/index.html)
+## Documentación Swagger
 
+Una vez en ejecución, puedes acceder a la documentación interactiva en:
 
-- **Postman**  Utilizando la colección añadida en el directorio raíz.
-
-- **Curl**
-*test 1:*
-
-  ```bash
-  curl -X 'GET' \
-    'http://localhost:8080/prices?productId=35455&brandId=1&date=2020-06-14T10%3A00%3A00Z' \
-    -H 'accept: application/json'
-  ```
-  
-Este curl da como resultado:
-```json
-{
-  "productId":35455,
-  "brandId":1,
-  "priceList":1.0,
-  "startDate":"2020-06-14T00:00:00",
-  "endDate":"2020-12-31T23:59:59",
-  "price":35.5
-}
+```
+http://localhost:8080/swagger-ui/index.html
 ```
 
-*test 2:*
+---
 
-  ```bash
-  curl -X 'GET' \
-    'http://localhost:8080/prices?productId=35455&brandId=1&date=2020-06-14T16%3A00%3A00Z' \
-    -H 'accept: application/json'
-  ```
+## Tests
 
-Este curl da como resultado:
-```json
-{
-  "productId":35455,
-  "brandId":1,
-  "priceList":2.0,
-  "startDate":"2020-06-14T15:00:00",
-  "endDate":"2020-06-14T18:30:00",
-  "price":25.45
-}
+```bash
+mvn test
 ```
 
-*test 3:*
+Incluye:
 
-  ```bash
-  curl -X 'GET' \
-    'http://localhost:8080/prices?productId=35455&brandId=1&date=2020-06-14T21%3A00%3A00Z' \
-    -H 'accept: application/json'
-  ```
+- Tests de unidad con Mockito para el caso de uso
+- Tests de integración REST para el endpoint
+- Fixtures parametrizados para validar los 4 escenarios oficiales
 
-Este curl da como resultado:
-```json
-{
-  "productId":35455,
-  "brandId":1,
-  "priceList":1.0,
-  "startDate":"2020-06-14T00:00:00",
-  "endDate":"2020-12-31T23:59:59",
-  "price":35.5
-}
+---
+
+## �Mejoras pendientes
+
+- Validación de zonas horarias y ajuste de fechas en el controlador
+- Mayor cobertura con tests parametrizados y slice tests JPA
+- Optimización de consultas SQL e índices en BD real
+
+---
+
+## Estructura del proyecto
+
+```
+src
+├── domain
+├── application
+│   └── port
+│       ├── in
+│       └── out
+├── adapter
+│   ├── in  (controller REST)
+│   └── out (persistence JPA)
+└── resources
+    ├── application.yml
+    └── schema.sql / data.sql
 ```
 
-*test 4:*
+---
 
-  ```bash
-  curl -X 'GET' \
-    'http://localhost:8080/prices?productId=35455&brandId=1&date=2020-06-15T10%3A00%3A00Z' \
-    -H 'accept: application/json'
-  ```
+## Autor
 
-Este curl da como resultado:
-```json
-{
-  "productId":35455,
-  "brandId":1,
-  "priceList":3.0,
-  "startDate":"2020-06-15T00:00:00",
-  "endDate":"2020-06-15T11:00:00",
-  "price":30.5""
-}
-```
+David Casanova Fernández  
+[GitHub](https://github.com/dcasanovaf)  
 
-*test 1:*
-
-  ```bash
-  curl -X 'GET' \
-    'http://localhost:8080/prices?productId=35455&brandId=1&date=2020-06-16T21%3A00%3A00Z' \
-    -H 'accept: application/json'
-  ```
-
-Este curl da como resultado:
-```json
-{
-  "productId":35455,
-  "brandId":1,
-  "priceList":4.0,
-  "startDate":"2020-06-15T16:00:00",
-  "endDate":"2020-12-31T23:59:59",
-  "price":38.95
-}
-```
-
-
-- **Tests**
-*Los test pedidos están en PricesIntegrationTest.java* Se pueden ejecutar de la siguiente manera:
-
-  ```bash
-  mvn test
-  ```
+---
