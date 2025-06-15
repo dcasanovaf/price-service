@@ -82,7 +82,7 @@ class PricesControllerTest {
         when(priceResponseMapper.domainToApi(totalPrice)).thenReturn(priceResponse);
 
         // Ejecución del test
-        mockMvc.perform(get("/prices")
+        mockMvc.perform(get("/v1/prices")
                 .param("productId", String.valueOf(productId))
                 .param("brandId", String.valueOf(brandId))
                 .param("date", date.toString())

@@ -57,7 +57,7 @@ class PriceSystemTest {
      */
     @BeforeEach
     protected void setUp() {
-        baseURI = URI.create("http://localhost:" + port + "/prices");
+        baseURI = URI.create("http://localhost:" + port + "/v1/prices");
     }
 
     /**

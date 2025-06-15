@@ -11,13 +11,15 @@ import java.util.Optional;
  */
 public interface PriceRepository {
 
-    /**
-     * Find by product id and brand id and date optional.
-     *
-     * @param productId the product id
-     * @param brandId   the brand id
-     * @param date      the date
-     * @return the optional
-     */
-    Optional<TotalPrice> findByProductIdAndBrandIdAndDate(ProductId productId, BrandId brandId, LocalDateTime date);
+  /**
+   * Find by product id and brand id and date optional.
+   *
+   * @param productId the product id
+   * @param brandId   the brand id
+   * @param date      the date
+   * @return the optional
+   */
+  Optional<TotalPrice> findByProductIdAndBrandIdAndDate(ProductId productId,
+                                                        BrandId brandId,
+                                                        LocalDateTime date);
 }

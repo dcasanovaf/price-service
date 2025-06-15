@@ -18,43 +18,43 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 public class GlobalExceptionHandler {
 
 
-    /**
-     * Handle generic exception response entity.
-     *
-     * @param ex the ex
-     * @return the response entity
-     */
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<Object> handleGenericException(Exception ex) {
-        return ResponseEntity.internalServerError().build();
-    }
+  /**
+   * Handle generic exception response entity.
+   *
+   * @param ex the ex
+   * @return the response entity
+   */
+  @ExceptionHandler(Exception.class)
+  public ResponseEntity<Object> handleGenericException(Exception ex) {
+    return ResponseEntity.internalServerError().build();
+  }
 
-    /**
-     * Handle type mismatch response entity.
-     *
-     * @param ex the ex
-     * @return the response entity
-     */
-    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
-    public ResponseEntity<Object> handleTypeMismatch(MethodArgumentTypeMismatchException ex) {
-        log.error("Error de conversión de tipo: {}", ex.getMessage());
-        return ResponseEntity
-            .status(HttpStatus.BAD_REQUEST)
-            .body(new Price400Response().message("Formato inválido para " + ex.getName() +
-                ". Se esperaba: " + ex.getRequiredType().getSimpleName()));
-    }
+  /**
+   * Handle type mismatch response entity.
+   *
+   * @param ex the ex
+   * @return the response entity
+   */
+  @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+  public ResponseEntity<Object> handleTypeMismatch(MethodArgumentTypeMismatchException ex) {
+    log.error("Error de conversión de tipo: {}", ex.getMessage());
+    return ResponseEntity
+        .status(HttpStatus.BAD_REQUEST)
+        .body(new Price400Response().message("Formato inválido para " + ex.getName()
+          + ". Se esperaba: " + ex.getRequiredType().getSimpleName()));
+  }
 
-    /**
-     * Handle price not found exception response entity.
-     *
-     * @param ex the ex
-     * @return the response entity
-     */
-    @ExceptionHandler(PriceNotFoundException.class)
-    public ResponseEntity<Object> handlePriceNotFoundException(PriceNotFoundException ex) {
-        log.error("Precio no encontrado: {}", ex.getMessage());
-        return ResponseEntity
-            .status(HttpStatus.NOT_FOUND)
-            .body(new ErrorDto(ex.getMessage()));
-    }
+  /**
+   * Handle price not found exception response entity.
+   *
+   * @param ex the ex
+   * @return the response entity
+   */
+  @ExceptionHandler(PriceNotFoundException.class)
+  public ResponseEntity<Object> handlePriceNotFoundException(PriceNotFoundException ex) {
+    log.error("Precio no encontrado: {}", ex.getMessage());
+    return ResponseEntity
+        .status(HttpStatus.NOT_FOUND)
+        .body(new ErrorDto(ex.getMessage()));
+  }
 }

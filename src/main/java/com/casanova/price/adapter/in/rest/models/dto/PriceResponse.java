@@ -14,24 +14,24 @@ import org.springframework.format.annotation.DateTimeFormat;
 @AllArgsConstructor
 public class PriceResponse {
 
-    @JsonProperty("productId")
-    Long productId;
+  @JsonProperty("productId")
+  Long productId;
 
-    @JsonProperty("brandId")
-    Long brandId;
+  @JsonProperty("brandId")
+  Long brandId;
 
-    @JsonProperty("priceList")
-    Double priceList;
+  @JsonProperty("priceList")
+  Double priceList;
 
-    @JsonProperty("startDate")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    java.time.LocalDateTime startDate;
+  @JsonProperty("startDate")
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+  java.time.LocalDateTime startDate;
 
-    @JsonProperty("endDate")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    java.time.LocalDateTime endDate;
+  @JsonProperty("endDate")
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+  java.time.LocalDateTime endDate;
 
-    @JsonProperty("price")
-    Double price;
+  @JsonProperty("price")
+  Double price;
 }
 

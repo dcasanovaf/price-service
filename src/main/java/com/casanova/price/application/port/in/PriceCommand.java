@@ -14,12 +14,13 @@ import lombok.Value;
 @Value
 @Builder(toBuilder = true)
 public class PriceCommand {
-    @NonNull
-    ProductId productId;
+  @NonNull
+  ProductId productId;
 
-    @NonNull
-    BrandId brandId;
+  @NonNull
+  BrandId brandId;
 
-    @NonNull LocalDateTime date;
+  @NonNull
+  LocalDateTime date;
 
 }

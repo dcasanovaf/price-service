@@ -10,6 +10,6 @@ import lombok.Value;
 @Value
 @AllArgsConstructor
 public class PriceList {
-    @NotEmpty(message = "PriceList it cannot be empty")
-    Double priceList;
+  @NotEmpty(message = "PriceList it cannot be empty")
+  Double priceList;
 }

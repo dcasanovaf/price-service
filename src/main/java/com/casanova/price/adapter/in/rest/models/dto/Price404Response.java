@@ -14,26 +14,40 @@ import org.openapitools.jackson.nullable.JsonNullable;
 @JsonTypeName("Price_404_response")
 public class Price404Response {
 
-    @JsonProperty("status")
-    private JsonNullable<Object> status = JsonNullable.undefined();
+  @JsonProperty("status")
+  private JsonNullable<Object> status = JsonNullable.undefined();
 
-    @JsonProperty("path")
-    private JsonNullable<Object> path = JsonNullable.undefined();
+  @JsonProperty("path")
+  private JsonNullable<Object> path = JsonNullable.undefined();
 
-    @JsonProperty("apiVersion")
-    private String apiVersion;
+  @JsonProperty("apiVersion")
+  private String apiVersion;
 
-    @JsonProperty("timestamp")
-    private String timestamp;
+  @JsonProperty("timestamp")
+  private String timestamp;
 
-    @JsonProperty("logRef")
-    private String logRef;
+  @JsonProperty("logRef")
+  private String logRef;
 
-    @JsonProperty("exception")
-    private String exception;
+  @JsonProperty("exception")
+  private String exception;
 
-    @JsonProperty("message")
-    private String message;
+  @JsonProperty("message")
+  private String message;
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent()
+      && Objects.deepEquals(
+        a.get(),
+        b.get()));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
+  }
 
   /**
    * Status price 404 response.
@@ -42,9 +56,9 @@ public class Price404Response {
    * @return the price 404 response
    */
   public Price404Response status(Object status) {
-        this.status = JsonNullable.of(status);
-        return this;
-    }
+    this.status = JsonNullable.of(status);
+    return this;
+  }
 
   /**
    * Gets status.
@@ -52,9 +66,9 @@ public class Price404Response {
    * @return the status
    */
   @Schema(name = "status", example = "404", required = false)
-    public JsonNullable<Object> getStatus() {
-        return status;
-    }
+  public JsonNullable<Object> getStatus() {
+    return status;
+  }
 
   /**
    * Sets status.
@@ -62,8 +76,8 @@ public class Price404Response {
    * @param status the status
    */
   public void setStatus(JsonNullable<Object> status) {
-        this.status = status;
-    }
+    this.status = status;
+  }
 
   /**
    * Path price 404 response.
@@ -72,9 +86,9 @@ public class Price404Response {
    * @return the price 404 response
    */
   public Price404Response path(Object path) {
-        this.path = JsonNullable.of(path);
-        return this;
-    }
+    this.path = JsonNullable.of(path);
+    return this;
+  }
 
   /**
    * Gets path.
@@ -82,9 +96,9 @@ public class Price404Response {
    * @return the path
    */
   @Schema(name = "path", example = "/prices", required = false)
-    public JsonNullable<Object> getPath() {
-        return path;
-    }
+  public JsonNullable<Object> getPath() {
+    return path;
+  }
 
   /**
    * Sets path.
@@ -92,8 +106,8 @@ public class Price404Response {
    * @param path the path
    */
   public void setPath(JsonNullable<Object> path) {
-        this.path = path;
-    }
+    this.path = path;
+  }
 
   /**
    * Api version price 404 response.
@@ -102,9 +116,9 @@ public class Price404Response {
    * @return the price 404 response
    */
   public Price404Response apiVersion(String apiVersion) {
-        this.apiVersion = apiVersion;
-        return this;
-    }
+    this.apiVersion = apiVersion;
+    return this;
+  }
 
   /**
    * Gets api version.
@@ -112,10 +126,10 @@ public class Price404Response {
    * @return the api version
    */
   @NotNull
-    @Schema(name = "apiVersion", example = "1.0.0", description = "API version", required = true)
-    public String getApiVersion() {
-        return apiVersion;
-    }
+  @Schema(name = "apiVersion", example = "1.0.0", description = "API version", required = true)
+  public String getApiVersion() {
+    return apiVersion;
+  }
 
   /**
    * Sets api version.
@@ -123,8 +137,8 @@ public class Price404Response {
    * @param apiVersion the api version
    */
   public void setApiVersion(String apiVersion) {
-        this.apiVersion = apiVersion;
-    }
+    this.apiVersion = apiVersion;
+  }
 
   /**
    * Timestamp price 404 response.
@@ -133,9 +147,9 @@ public class Price404Response {
    * @return the price 404 response
    */
   public Price404Response timestamp(String timestamp) {
-        this.timestamp = timestamp;
-        return this;
-    }
+    this.timestamp = timestamp;
+    return this;
+  }
 
   /**
    * Gets timestamp.
@@ -143,10 +157,13 @@ public class Price404Response {
    * @return the timestamp
    */
   @NotNull
-    @Schema(name = "timestamp", example = "2022-07-01T06:57:02.283+00:00", description = "Timestamp", required = true)
-    public String getTimestamp() {
-        return timestamp;
-    }
+  @Schema(name = "timestamp",
+          example = "2022-07-01T06:57:02.283+00:00",
+          description = "Timestamp",
+          required = true)
+  public String getTimestamp() {
+    return timestamp;
+  }
 
   /**
    * Sets timestamp.
@@ -154,8 +171,8 @@ public class Price404Response {
    * @param timestamp the timestamp
    */
   public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
+    this.timestamp = timestamp;
+  }
 
   /**
    * Log ref price 404 response.
@@ -164,19 +181,22 @@ public class Price404Response {
    * @return the price 404 response
    */
   public Price404Response logRef(String logRef) {
-        this.logRef = logRef;
-        return this;
-    }
+    this.logRef = logRef;
+    return this;
+  }
 
   /**
    * Gets log ref.
    *
    * @return the log ref
    */
-  @Schema(name = "logRef", example = "a6f00445-bcb7-4858-a493-34e982d9b65a", description = "Log reference", required = false)
-    public String getLogRef() {
-        return logRef;
-    }
+  @Schema(name = "logRef",
+          example = "a6f00445-bcb7-4858-a493-34e982d9b65a",
+          description = "Log reference",
+          required = false)
+  public String getLogRef() {
+    return logRef;
+  }
 
   /**
    * Sets log ref.
@@ -184,8 +204,8 @@ public class Price404Response {
    * @param logRef the log ref
    */
   public void setLogRef(String logRef) {
-        this.logRef = logRef;
-    }
+    this.logRef = logRef;
+  }
 
   /**
    * Exception price 404 response.
@@ -194,9 +214,9 @@ public class Price404Response {
    * @return the price 404 response
    */
   public Price404Response exception(String exception) {
-        this.exception = exception;
-        return this;
-    }
+    this.exception = exception;
+    return this;
+  }
 
   /**
    * Gets exception.
@@ -204,10 +224,13 @@ public class Price404Response {
    * @return the exception
    */
   @NotNull
-    @Schema(name = "exception", example = "RuntimeException", description = "Exception name", required = true)
-    public String getException() {
-        return exception;
-    }
+  @Schema(name = "exception",
+          example = "RuntimeException",
+          description = "Exception name",
+          required = true)
+  public String getException() {
+    return exception;
+  }
 
   /**
    * Sets exception.
@@ -215,8 +238,8 @@ public class Price404Response {
    * @param exception the exception
    */
   public void setException(String exception) {
-        this.exception = exception;
-    }
+    this.exception = exception;
+  }
 
   /**
    * Message price 404 response.
@@ -225,9 +248,9 @@ public class Price404Response {
    * @return the price 404 response
    */
   public Price404Response message(String message) {
-        this.message = message;
-        return this;
-    }
+    this.message = message;
+    return this;
+  }
 
   /**
    * Gets message.
@@ -235,10 +258,10 @@ public class Price404Response {
    * @return the message
    */
   @NotNull
-    @Schema(name = "message", description = "Error description", required = true)
-    public String getMessage() {
-        return message;
-    }
+  @Schema(name = "message", description = "Error description", required = true)
+  public String getMessage() {
+    return message;
+  }
 
   /**
    * Sets message.
@@ -246,63 +269,57 @@ public class Price404Response {
    * @param message the message
    */
   public void setMessage(String message) {
-        this.message = message;
-    }
+    this.message = message;
+  }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Price404Response price404Response = (Price404Response) o;
-        return equalsNullable(this.status, price404Response.status) &&
-                equalsNullable(this.path, price404Response.path) &&
-                Objects.equals(this.apiVersion, price404Response.apiVersion) &&
-                Objects.equals(this.timestamp, price404Response.timestamp) &&
-                Objects.equals(this.logRef, price404Response.logRef) &&
-                Objects.equals(this.exception, price404Response.exception) &&
-                Objects.equals(this.message, price404Response.message);
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Price404Response price404Response = (Price404Response) o;
+    return equalsNullable(this.status, price404Response.status)
+      && equalsNullable(this.path, price404Response.path)
+      && Objects.equals(this.apiVersion, price404Response.apiVersion)
+      && Objects.equals(this.timestamp, price404Response.timestamp)
+      && Objects.equals(this.logRef, price404Response.logRef)
+      && Objects.equals(this.exception, price404Response.exception)
+      && Objects.equals(this.message, price404Response.message);
+  }
 
-    private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-        return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
-    }
+  @Override
+  public int hashCode() {
+    return Objects.hash(hashCodeNullable(status),
+        hashCodeNullable(path),
+        apiVersion,
+        timestamp,
+        logRef,
+        exception,
+        message);
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(hashCodeNullable(status), hashCodeNullable(path), apiVersion, timestamp, logRef, exception, message);
-    }
+  @Override
+  public String toString() {
+    String sb = "class Price404Response {\n"
+                + "    status: " + toIndentedString(status) + "\n"
+                + "    path: " + toIndentedString(path) + "\n"
+                + "    apiVersion: " + toIndentedString(apiVersion) + "\n"
+                + "    timestamp: " + toIndentedString(timestamp) + "\n"
+                + "    logRef: " + toIndentedString(logRef) + "\n"
+                + "    exception: " + toIndentedString(exception) + "\n"
+                + "    message: " + toIndentedString(message) + "\n"
+                + "}";
+    return sb;
+  }
 
-    private static <T> int hashCodeNullable(JsonNullable<T> a) {
-        if (a == null) {
-            return 1;
-        }
-        return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
     }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class Price404Response {\n");
-        sb.append("    status: ").append(toIndentedString(status)).append("\n");
-        sb.append("    path: ").append(toIndentedString(path)).append("\n");
-        sb.append("    apiVersion: ").append(toIndentedString(apiVersion)).append("\n");
-        sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
-        sb.append("    logRef: ").append(toIndentedString(logRef)).append("\n");
-        sb.append("    exception: ").append(toIndentedString(exception)).append("\n");
-        sb.append("    message: ").append(toIndentedString(message)).append("\n");
-        sb.append("}");
-        return sb.toString();
-    }
-
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
+    return o.toString().replace("\n", "\n    ");
+  }
 }
 

@@ -11,45 +11,50 @@ import lombok.Data;
 @Data
 @Builder(toBuilder = true)
 public class TotalPrice {
-    /**
-     * The Product id.
-     */
-    @NotNull ProductId productId;
+  /**
+   * The Product id.
+   */
+  @NotNull
+  ProductId productId;
 
-    /**
-     * The Brand id.
-     */
-    @NotNull BrandId brandId;
+  /**
+   * The Brand id.
+   */
+  @NotNull
+  BrandId brandId;
 
-    /**
-     * The PriceList.
-     */
-    @NotNull
-    PriceList priceList;
+  /**
+   * The PriceList.
+   */
+  @NotNull
+  PriceList priceList;
 
-    /**
-     * The Start date.
-     */
-    @NotNull LocalDateTime startDate;
+  /**
+   * The Start date.
+   */
+  @NotNull
+  LocalDateTime startDate;
 
-    /**
-     * The End date.
-     */
-    @NotNull LocalDateTime endDate;
+  /**
+   * The End date.
+   */
+  @NotNull
+  LocalDateTime endDate;
 
-    /**
-     * The Price.
-     */
-    @NotNull Price price;
+  /**
+   * The Price.
+   */
+  @NotNull
+  Price price;
 
-    /**
-     * The Priority.
-     */
-    Priority priority;
+  /**
+   * The Priority.
+   */
+  Priority priority;
 
-    /**
-     * The Currency.
-     */
-    Currency currency;
+  /**
+   * The Currency.
+   */
+  Currency currency;
 
 }

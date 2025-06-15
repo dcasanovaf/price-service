@@ -10,6 +10,6 @@ import lombok.Value;
 @Value
 @AllArgsConstructor
 public class BrandId {
-    @NotEmpty(message = "Id it cannot be empty")
-    Long id;
+  @NotEmpty(message = "Id it cannot be empty")
+  Long id;
 }
