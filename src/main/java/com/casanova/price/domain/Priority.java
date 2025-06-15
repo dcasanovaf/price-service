@@ -9,5 +9,5 @@ import lombok.Value;
 @Value
 @AllArgsConstructor
 public class Priority {
-    Integer value;
+  Integer value;
 }

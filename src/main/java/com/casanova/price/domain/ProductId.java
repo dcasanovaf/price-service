@@ -8,6 +8,6 @@ import lombok.Value;
  */
 @Value
 public class ProductId {
-    @NotEmpty(message = "Id it cannot be empty")
-    Long id;
+  @NotEmpty(message = "Id it cannot be empty")
+  Long id;
 }

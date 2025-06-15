@@ -12,19 +12,19 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface PriceRequestMapper {
 
-    /**
-     * To command price command.
-     *
-     * @param productId the product id
-     * @param brandId   the brand id
-     * @param date      the date
-     * @return the price command
-     */
-    default PriceCommand toCommand(Long productId, Long brandId, LocalDateTime date) {
-        return PriceCommand.builder()
-                .productId(new ProductId(productId))
-                .brandId(new BrandId(brandId))
-                .date(date)
-                .build();
-    }
+  /**
+   * To command price command.
+   *
+   * @param productId the product id
+   * @param brandId   the brand id
+   * @param date      the date
+   * @return the price command
+   */
+  default PriceCommand toCommand(Long productId, Long brandId, LocalDateTime date) {
+    return PriceCommand.builder()
+        .productId(new ProductId(productId))
+        .brandId(new BrandId(brandId))
+        .date(date)
+        .build();
+  }
 }

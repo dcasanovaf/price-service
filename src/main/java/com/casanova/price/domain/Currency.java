@@ -9,5 +9,5 @@ import lombok.Value;
 @Value
 @AllArgsConstructor
 public class Currency {
-    String isoCurr;
+  String isoCurr;
 }

@@ -14,19 +14,19 @@ import org.springframework.stereotype.Component;
 @Component
 public interface PriceMapper {
 
-    /**
-     * Persistence to domain total price.
-     *
-     * @param priceJpaEntity the price jpa entity
-     * @return the total price
-     */
-    @Mapping(target = "productId.id", source = "productId")
-    @Mapping(target = "brandId.id", source = "brandId")
-    @Mapping(target = "priceList.priceList", source = "priceList")
-    @Mapping(target = "startDate", source = "startDate")
-    @Mapping(target = "endDate", source = "endDate")
-    @Mapping(target = "price.price", source = "price")
-    @Mapping(target = "priority.value", source = "priority")
-    @Mapping(target = "currency.isoCurr", source = "currency")
-    TotalPrice persistenceToDomain(PriceJpaEntity priceJpaEntity);
+  /**
+   * Persistence to domain total price.
+   *
+   * @param priceJpaEntity the price jpa entity
+   * @return the total price
+   */
+  @Mapping(target = "productId.id", source = "productId")
+  @Mapping(target = "brandId.id", source = "brandId")
+  @Mapping(target = "priceList.priceList", source = "priceList")
+  @Mapping(target = "startDate", source = "startDate")
+  @Mapping(target = "endDate", source = "endDate")
+  @Mapping(target = "price.price", source = "price")
+  @Mapping(target = "priority.value", source = "priority")
+  @Mapping(target = "currency.isoCurr", source = "currency")
+  TotalPrice persistenceToDomain(PriceJpaEntity priceJpaEntity);
 }

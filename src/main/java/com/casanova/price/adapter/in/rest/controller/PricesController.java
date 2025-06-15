@@ -22,19 +22,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class PricesController implements PricesApi {
 
-    private final PriceUseCase priceUseCase;
-    private final PriceResponseMapper priceResponseMapper;
-    private final PriceRequestMapper priceRequestMapper;
+  private final PriceUseCase priceUseCase;
+  private final PriceResponseMapper priceResponseMapper;
+  private final PriceRequestMapper priceRequestMapper;
 
 
-    @Override
-    public ResponseEntity<PriceResponse> price(Long productId, Long brandId, LocalDateTime date) {
-        log.info("Solicitud recibida: productId={}, brandId={}, date={}", productId, brandId, date);
-        final PriceCommand priceCommand = priceRequestMapper.toCommand(productId, brandId, date);
-        final TotalPrice totalPrice = priceUseCase.getPrice(priceCommand);
-        final PriceResponse pricesResponse = priceResponseMapper.domainToApi(totalPrice);
-        log.info("Respuesta generada: {}", pricesResponse);
-        return ResponseEntity.ok(pricesResponse);
+  @Override
+  public ResponseEntity<PriceResponse> price(Long productId, Long brandId, LocalDateTime date) {
+    log.info("Solicitud recibida: productId={}, brandId={}, date={}", productId, brandId, date);
+    final PriceCommand priceCommand = priceRequestMapper.toCommand(productId, brandId, date);
+    final TotalPrice totalPrice = priceUseCase.getPrice(priceCommand);
+    final PriceResponse pricesResponse = priceResponseMapper.domainToApi(totalPrice);
+    log.info("Respuesta generada: {}", pricesResponse);
+    return ResponseEntity.ok(pricesResponse);
 
-    }
+  }
 }

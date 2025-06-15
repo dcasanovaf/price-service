@@ -20,24 +20,24 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PriceJpaEntity {
 
-	@Id
-	@GeneratedValue
-	private Long id;
+  @Id
+  @GeneratedValue
+  private Long id;
 
-	@Column
-	private Long brandId;
-	@Column
-	private LocalDateTime startDate;
-	@Column
-	private LocalDateTime endDate;
-	@Column
-	private Double priceList;
-	@Column
-	private Long productId;
-	@Column
-	private Integer priority;
-	@Column
-	private Double price;
-	@Column
-	private String currency;
+  @Column
+  private Long brandId;
+  @Column
+  private LocalDateTime startDate;
+  @Column
+  private LocalDateTime endDate;
+  @Column
+  private Double priceList;
+  @Column
+  private Long productId;
+  @Column
+  private Integer priority;
+  @Column
+  private Double price;
+  @Column
+  private String currency;
 }

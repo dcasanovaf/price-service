@@ -18,32 +18,32 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class PriceService implements PriceUseCase {
 
-    private final PriceRepository priceRepository;
+  private final PriceRepository priceRepository;
 
-    @Override
-    public TotalPrice getPrice(PriceCommand priceCommand) {
-        log.debug("Buscando precio para producto={}, marca={}, fecha={}",
-            priceCommand.getProductId().getId(),
-            priceCommand.getBrandId().getId(),
-            priceCommand.getDate());
+  @Override
+  public TotalPrice getPrice(PriceCommand priceCommand) {
+    log.debug("Buscando precio para producto={}, marca={}, fecha={}",
+        priceCommand.getProductId().getId(),
+        priceCommand.getBrandId().getId(),
+        priceCommand.getDate());
 
-        TotalPrice result = priceRepository.findByProductIdAndBrandIdAndDate(
-            priceCommand.getProductId(),
-            priceCommand.getBrandId(),
-            priceCommand.getDate()
-        ).orElseThrow(() -> {
-            log.error("Precio no encontrado para producto={}, marca={}, fecha={}",
-                priceCommand.getProductId().getId(),
-                priceCommand.getBrandId().getId(),
-                priceCommand.getDate());
-            return new PriceNotFoundException(
-                priceCommand.getProductId(),
-                priceCommand.getBrandId(),
-                priceCommand.getDate()
-            );
-        });
+    TotalPrice result = priceRepository.findByProductIdAndBrandIdAndDate(
+        priceCommand.getProductId(),
+        priceCommand.getBrandId(),
+        priceCommand.getDate()
+    ).orElseThrow(() -> {
+      log.error("Precio no encontrado para producto={}, marca={}, fecha={}",
+          priceCommand.getProductId().getId(),
+          priceCommand.getBrandId().getId(),
+          priceCommand.getDate());
+      return new PriceNotFoundException(
+          priceCommand.getProductId(),
+          priceCommand.getBrandId(),
+          priceCommand.getDate()
+      );
+    });
 
-        log.debug("Precio encontrado: {}", result);
-        return result;
-    }
+    log.debug("Precio encontrado: {}", result);
+    return result;
+  }
 }

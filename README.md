@@ -14,6 +14,7 @@ Servicio REST para consultar el precio aplicable de un producto en una fecha dad
 - **H2 Database** (modo test)
 - **Swagger OpenAPI 3**
 - **JUnit 5 / Mockito**
+- **Flyway** (migración de base de datos)
 
 ---
 
@@ -71,8 +72,9 @@ Consulta el precio aplicable para un producto en una fecha y marca determinada.
 #### Ejemplo:
 
 ```http
-GET /v1/prices?productId=35455&brandId=1&date=2020-06-14T10:00:00Z
-```
+curl --request GET \
+  --url 'http://localhost:8080/v1/prices?productId=35455&brandId=1&date=2020-06-14T10%3A00%3A00Z'
+  ```
 
 #### Respuesta:
 
@@ -87,8 +89,44 @@ GET /v1/prices?productId=35455&brandId=1&date=2020-06-14T10:00:00Z
   "currency": "EUR"
 }
 ```
+---
+
+## Casos de prueba:
+
+### Test 1: Petición a las 10:00 del día 14: 
+```http
+curl --request GET \
+  --url 'http://localhost:8080/v1/prices?productId=35455&brandId=1&date=2020-06-14T10%3A00%3A00Z'
+```
+
+### Test 2: Petición a las 16:00 del día 14: 
+```http
+curl --request GET \
+  --url 'http://localhost:8080/v1/prices?productId=35455&brandId=1&date=2020-06-14T16%3A00%3A00Z'
+```
+
+### Test 3: Petición a las 21:00 del día 14: 
+```http
+curl --request GET \
+  --url 'http://localhost:8080/v1/prices?productId=35455&brandId=1&date=2020-06-14T21%3A00%3A00Z'
+```
+
+### Test 4: Petición a las 10:00 del día 15: 
+```http
+curl --request GET \
+  --url 'http://localhost:8080/v1/prices?productId=35455&brandId=1&date=2020-06-15T10%3A00%3A00Z'
+```
+
+### Test 5: Petición a las 21:00 del día 16:
+```http
+curl --request GET \
+  --url 'http://localhost:8080/v1/prices?productId=35455&brandId=1&date=2020-06-16T21:00:00Z'
+  ```
+
 
 ---
+
+
 
 ## Documentación Swagger
 
@@ -111,14 +149,6 @@ Incluye:
 - Tests de unidad con Mockito para el caso de uso
 - Tests de integración REST para el endpoint
 - Fixtures parametrizados para validar los 4 escenarios oficiales
-
----
-
-## �Mejoras pendientes
-
-- Validación de zonas horarias y ajuste de fechas en el controlador
-- Mayor cobertura con tests parametrizados y slice tests JPA
-- Optimización de consultas SQL e índices en BD real
 
 ---
 

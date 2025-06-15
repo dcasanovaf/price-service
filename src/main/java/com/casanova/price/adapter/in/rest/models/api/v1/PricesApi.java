@@ -36,32 +36,44 @@ public interface PricesApi {
    * @return the response entity
    */
   @Operation(
-        operationId = "price",
-        tags = { "Prices" },
-        responses = {
-            @ApiResponse(responseCode = "200", description = "Ok", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = PriceResponse.class))
-            }),
-            @ApiResponse(responseCode = "400", description = "Bad Request", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = Price400Response.class))
-            }),
-            @ApiResponse(responseCode = "404", description = "Not Found", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = Price404Response.class))
-            }),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = Price500Response.class))
-            })
-        }
-    )
-    @RequestMapping(
-        method = RequestMethod.GET,
-        value = "/v1/prices",
-        produces = { "application/json" }
-    )
-    ResponseEntity<PriceResponse> price(
-        @NotNull @Parameter(name = "productId", description = "Numeric ID of the product", required = true) @Valid @RequestParam(value = "productId", required = true) Long productId,
-        @NotNull @Parameter(name = "brandId", description = "Numeric ID of the brand", required = true) @Valid @RequestParam(value = "brandId", required = true) Long brandId,
-        @NotNull @Parameter(name = "date", description = "Apply date pricing", required = true) @Valid @RequestParam(value = "date", required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) java.time.LocalDateTime date
-    );
+      operationId = "price",
+      tags = {"Prices"},
+      responses = {
+          @ApiResponse(responseCode = "200", description = "Ok", content = {
+              @Content(mediaType = "application/json",
+                       schema = @Schema(implementation = PriceResponse.class))
+          }),
+          @ApiResponse(responseCode = "400", description = "Bad Request", content = {
+              @Content(mediaType = "application/json",
+                       schema = @Schema(implementation = Price400Response.class))
+          }),
+          @ApiResponse(responseCode = "404", description = "Not Found", content = {
+              @Content(mediaType = "application/json",
+                       schema = @Schema(implementation = Price404Response.class))
+          }),
+          @ApiResponse(responseCode = "500", description = "Internal Server Error", content = {
+              @Content(mediaType = "application/json",
+                       schema = @Schema(implementation = Price500Response.class))
+          })
+      }
+  )
+  @RequestMapping(
+      method = RequestMethod.GET,
+      value = "/v1/prices",
+      produces = {"application/json"}
+  )
+  ResponseEntity<PriceResponse> price(
+      @NotNull @Parameter(name = "productId",
+                          description = "Numeric ID of the product",
+                          required = true)
+      @Valid @RequestParam(value = "productId") Long productId,
+      @NotNull @Parameter(name = "brandId",
+                          description = "Numeric ID of the brand",
+                          required = true)
+      @Valid @RequestParam(value = "brandId") Long brandId,
+      @NotNull @Parameter(name = "date", description = "Apply date pricing", required = true)
+      @Valid @RequestParam(value = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+      java.time.LocalDateTime date
+  );
 
 }
